@@ -7,10 +7,10 @@
 
 A fixed-income analytics engine written in **C++20**, compiled to **WebAssembly**, and
 driven by a **React + TypeScript** front-end. It prices fixed-rate coupon bonds and
-computes the metrics a fixed-income desk actually uses (yield to maturity, accrued
-interest, duration, convexity, DV01), then bootstraps a zero curve from par yields.
+computes yield to maturity, accrued
+interest, duration, convexity, and DV01, then bootstraps a zero curve from par yields.
 
-**▶ Live demo:** https://m47h13uk.github.io/cpp-fixed-income-analytics/
+[Live demo](https://m47h13uk.github.io/cpp-fixed-income-analytics/)
 
 ![Screenshot of the web app](demo.png)
 
@@ -20,7 +20,7 @@ interest, duration, convexity, DV01), then bootstraps a zero curve from par yiel
 
 This started as a first-year **finance-minor** homework exercise: a single C++ program that
 plugged numbers into the bond-price formula. The formula is real but trivial on its own, so I
-rebuilt it into a proper engine. One C++ core, used three ways: an interactive CLI, a
+expanded it into an analytics engine. One C++ core, used three ways: an interactive CLI, a
 unit-test suite checked against textbook values, and a browser UI that runs the *same*
 compiled C++ through WebAssembly, with no logic copied into JavaScript.
 
@@ -85,6 +85,7 @@ which the **Scenario** panel checks live against a full reprice.
 ## Build & run
 
 ### C++ engine, CLI and tests
+
 Requires CMake ≥ 3.20 and a C++20 compiler.
 
 ```bash
@@ -95,6 +96,7 @@ ctest --test-dir build --output-on-failure   # runs the unit tests
 ```
 
 ### Web app
+
 Requires [Emscripten](https://emscripten.org/) (`emcc` on `PATH`) and Node ≥ 18.
 
 ```bash
@@ -107,7 +109,7 @@ npm run preview    # serves the production build locally
 
 ## Project layout
 
-```
+```text
 engine/include/fi/   header-only C++ engine
   date.hpp           lightweight civil date + serial day number
   daycount.hpp       day-count conventions
